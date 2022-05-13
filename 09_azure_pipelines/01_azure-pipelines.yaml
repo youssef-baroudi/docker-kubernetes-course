@@ -2,8 +2,9 @@ trigger: none
 # - main
 
 #pool:
- # vmImage: ubuntu-latest
- pool: Self-Hosted on Mac
+  #vmImage: 'ubuntu-latest'
+pool:
+  name: Self-Hosted on Mac
   demands:
    - agent.name -equals air-de-mac
 

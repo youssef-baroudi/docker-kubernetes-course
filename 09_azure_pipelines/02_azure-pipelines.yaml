@@ -48,15 +48,15 @@ stages:
         targetType: 'inline'
         script: |
           #ls $(pwd)/app/dockerfile/java
-          ls $(pwd)/app-dotnet
           #docker run --tty --volume $(pwd)/app/dockerfile/java:/dfile bridgecrew/checkov --directory /dfile
           # docker run --tty --volume /app/dockerfile/java:/dfile bridgecrew/checkov --directory /dfile
-          sudo apt update
-          sudo apt install software-properties-common
-          sudo add-apt-repository ppa:deadsnakes/ppa
-          sudo apt install python3.7
-          sudo apt install python3-pip
-          sudo python3.7 -m pip install -U checkov
+          #sudo apt update
+          #sudo apt install software-properties-common
+          #sudo add-apt-repository ppa:deadsnakes/ppa
+          #sudo apt install python3.7
+          #sudo apt install python3-pip
+          #sudo python3.7 -m pip install -U checkov
+          brew upgrade checkov
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - task: Bash@3

@@ -47,7 +47,8 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          ls $(pwd)/app/dockerfile/java
+          #ls $(pwd)/app/dockerfile/java
+          ls $(pwd)/app-dotnet
           #docker run --tty --volume $(pwd)/app/dockerfile/java:/dfile bridgecrew/checkov --directory /dfile
           # docker run --tty --volume /app/dockerfile/java:/dfile bridgecrew/checkov --directory /dfile
           sudo apt update

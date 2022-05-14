@@ -56,7 +56,10 @@ stages:
           #sudo apt install python3.7
           #sudo apt install python3-pip
           #sudo python3.7 -m pip install -U checkov
-          brew install --build-from-source python@3.7
+          brew install pyenv
+          pyenv install 3.10.0
+          pyenv global 3.10.0
+          pyenv version
           brew install checkov
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 

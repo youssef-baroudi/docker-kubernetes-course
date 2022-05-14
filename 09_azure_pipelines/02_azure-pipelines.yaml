@@ -56,6 +56,7 @@ stages:
           #sudo apt install python3.7
           #sudo apt install python3-pip
           #sudo python3.7 -m pip install -U checkov
+          brew install python3
           brew install checkov
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 

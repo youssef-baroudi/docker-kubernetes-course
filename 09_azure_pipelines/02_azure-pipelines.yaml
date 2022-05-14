@@ -1,8 +1,12 @@
 trigger: none
 # - main
 
+#pool:
+  #vmImage: 'ubuntu-latest'
 pool:
-  vmImage: ubuntu-latest
+  name: Self-Hosted on Mac
+  demands:
+   - agent.name -equals air-de-mac
 
 variables:
   tag: 1.0.0-$(Build.BuildId)
@@ -28,8 +32,12 @@ stages:
 
   - job: ScanAndTest
     displayName: Scan & Test Code
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
     
@@ -87,8 +95,12 @@ stages:
   - job: Build
     displayName: Build Image
     dependsOn: ScanAndTest
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
 
@@ -170,8 +182,12 @@ stages:
   jobs:
   - job: Deploy
     displayName: 'Deploy to DEV'
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
 
@@ -200,8 +216,12 @@ stages:
   - job: Test
     displayName: 'Integration Tests DEV'
     dependsOn: Deploy
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
     - task: Bash@3
@@ -215,8 +235,12 @@ stages:
   jobs:
   - job: Deploy
     displayName: Deploy to QA
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
 
@@ -246,8 +270,12 @@ stages:
   - job: Test
     displayName: 'Integration Tests QA'
     dependsOn: Deploy
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
     - task: Bash@3
@@ -278,8 +306,12 @@ stages:
   - job: Deploy
     displayName: Deploy to PROD
     dependsOn: waitForValidation
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
 
@@ -308,8 +340,12 @@ stages:
   - job: Test
     displayName: 'Integration Tests PROD'
     dependsOn: Deploy
+    #pool:
+    #vmImage: 'ubuntu-latest'
     pool:
-      vmImage: 'ubuntu-latest'
+     name: Self-Hosted on Mac
+     demands:
+      - agent.name -equals air-de-mac
 
     steps:
     - task: Bash@3

@@ -122,19 +122,19 @@ stages:
     - task: AzureCLI@2
       displayName: Push Container to ACR
       inputs:
-        azureSubscription: 'aks-spn-ca'
+        azureSubscription: 'app-spnfordevops'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
           az acr login -n acrforakscluster
-
+          
           docker push acrforakscluster.azurecr.io/webapp:$(tag)
 
     - task: AzureCLI@2
       displayName: '[Optional] Build Container inside ACR'
       enabled: ${{ parameters.runCompletePipeline}}
       inputs:
-        azureSubscription: 'aks-spn-ca'
+        azureSubscription: 'app-spnfordevops'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |
@@ -200,7 +200,7 @@ stages:
       displayName: Deploy YAML Manifest
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscriptionEndpoint: 'aks-spn-ca'
+        azureSubscriptionEndpoint: 'app-spnfordevops'
         azureResourceGroup: 'rg-aks-cluster'
         kubernetesCluster: 'aks-cluster'
         namespace: 'default'
@@ -253,7 +253,7 @@ stages:
       displayName: Deploy Helm Chart
       inputs:
         connectionType: 'Azure Resource Manager'
-        azureSubscription: 'aks-spn-ca'
+        azureSubscription: 'app-spnfordevops'
         azureResourceGroup: 'rg-aks-cluster'
         kubernetesCluster: 'aks-cluster'
         namespace: 'qa'
@@ -323,7 +323,7 @@ stages:
     - task: AzureCLI@2
       displayName: 'Deploy Helm Chart'
       inputs:
-        azureSubscription: 'aks-spn-ca'
+        azureSubscription: 'app-spnfordevops'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         workingDirectory: '$(System.ArtifactsDirectory)/drop/helm_chart'
@@ -355,7 +355,7 @@ stages:
       displayName: 'Scan Cluster Config'
       # enabled: ${{ parameters.runCompletePipeline}}
       inputs:
-        azureSubscription: 'aks-spn-ca'
+        azureSubscription: 'app-spnfordevops'
         scriptType: 'bash'
         scriptLocation: 'inlineScript'
         inlineScript: |

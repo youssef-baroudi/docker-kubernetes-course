@@ -142,25 +142,22 @@ stages:
 
           az acr build -r acrforakscluster -t webapp:$(tag) app-dotnet
 
-    - task: qetza.replacetokens.replacetokens-task.replacetokens@4
-      displayName: Replace TAG in YAML Deployment
+    - task: qetza.replacetokens.replacetokens-task.replacetokens@3
+      displayName: 'Replace Image TAG'
       inputs:
-        targetFiles: '02_kubernetes_aks/app-deploy.yaml'
-        encoding: 'auto'
-        tokenPattern: 'rm'
-        writeBOM: true
-        actionOnMissing: 'warn'
-        keepToken: false
-        actionOnNoFiles: 'continue'
-        enableTransforms: false
-        useLegacyPattern: false
-        enableTelemetry: true
+       rootDirectory: '02_kubernetes_aks'
+       targetFiles: 'app-deploy.yaml'
+       encoding: 'auto'
+       writeBOM: true
+       actionOnMissing: 'warn'
+       keepToken: false
+       tokenPrefix: '__'
+       tokenSuffix: '__'
+       useLegacyPattern: false
+       enableTransforms: false
+       enableTelemetry: true
 
-    - task: Bash@3
-      displayName: Verify TAG Updated
-      inputs:
-        targetType: 'inline'
-        script: 'cat 02_kubernetes_aks/app-deploy.yaml'
+    - script: cat 02_kubernetes_aks/app-deploy.yaml
 
     - task: PublishBuildArtifacts@1
       displayName: Upload YAML manifest

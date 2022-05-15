@@ -57,10 +57,7 @@ stages:
           #sudo apt install python3-pip
           #sudo python3.7 -m pip install -U checkov
           # adapted to my local agent on mac after installing manually python version 3.10.4
-          # upgrade pip to pip-22.0.4
-          python3 -m pip install --upgrade pip
-          # install checkov
-          python3 -m pip install -U checkov
+          brew install checkov
         workingDirectory: '$(System.DefaultWorkingDirectory)'
 
     - task: Bash@3

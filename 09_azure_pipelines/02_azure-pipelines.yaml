@@ -121,6 +121,9 @@ stages:
         script: |
           #docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $HOME/Library/Caches:/root/.cache/ aquasec/trivy --exit-code 0 --severity MEDIUM,HIGH,CRITICAL --ignore-unfixed acrforakscluster.azurecr.io/webapp:$(tag)
           docker scan acrforakscluster.azurecr.io/webapp:$(tag)
+          echo "Default Working DIR Content"
+          cd $(System.DefaultWorkingDirectory)
+          ls -la
 
     - task: AzureCLI@2
       displayName: Push Container to ACR
